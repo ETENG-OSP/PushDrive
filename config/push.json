@@ -1,5 +1,5 @@
 {
-  "driver": "com.eteng.driver.xgpush.XGDriver",
+  "driver": "com.eteng.driver.XGPushDriver",
   "private-key": "2fd2ed4b11443b3b48458159359ba8da",
   "app-id": "2100005168"
 }

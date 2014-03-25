@@ -38,10 +38,7 @@ public class Push {
 	}
 	
 	public static void main(String[] args) throws PushException {
-		new Push()
-			.title("")
-			.text("")
-			.toAll();
+		new Push().toAll();
 	}
 
 	public void toAll() throws PushException {
