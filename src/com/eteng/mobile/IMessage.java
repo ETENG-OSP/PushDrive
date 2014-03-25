@@ -15,8 +15,6 @@ public interface IMessage {
 	void setExtra(Map<String, Object> extra);
 	void setExpire(int ttl);
 	
-	Object getRaw();
-	
 	enum Type {
 		TYPE_SMS,
 		TYPE_APP

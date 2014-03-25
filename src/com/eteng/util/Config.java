@@ -1,4 +1,4 @@
-package com.eteng.mobile;
+package com.eteng.util;
 
 import java.io.File;
 import java.io.FileInputStream;
