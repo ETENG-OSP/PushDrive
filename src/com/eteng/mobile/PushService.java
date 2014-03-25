@@ -1,6 +1,9 @@
 package com.eteng.mobile;
 
 import java.io.IOException;
+import java.util.List;
+
+import com.eteng.exception.PushException;
 
 
 public class PushService {
@@ -27,30 +30,35 @@ public class PushService {
 		}
 	}
 	
-	void pushAll(IMessage message) {		
+	void pushAll(IMessage message) throws PushException {		
 		driver.pushAll(message);
 	}
 	
-	void pushAccount() {
+	void pushAccount(String account, IMessage message) throws PushException {
+		driver.pushAccount(account, message);
 	}
 	
-	void pushGroup() {
+	void pushAccount(List<String> accounts, IMessage message) throws PushException {
+		for (String account: accounts) {
+			pushAccount(account, message);
+		}
 	}
 	
-	public static void main(String args[]) {
-		
-		PushService service = new PushService();
-		MessageBuilder builder = service.createBuilder()
-		    .setTitle("Hello")
-			.setText("World");
-		
-		service.pushAll(builder.build());
+	void pushGroup(String group, IMessage message) throws Exception {
+		throw new Exception("not implements");
 	}
-
+	
 	private MessageBuilder createBuilder() {
 		IMessage message = driver.createMessage();
 		MessageBuilder builder = new MessageBuilder(message);
 		return builder;
+	}
+	
+	public static void main(String args[]) throws Exception {
+		
+		PushService service = new PushService();
+		MessageBuilder builder = service.createBuilder();
+		service.pushAccount("tester", builder.build());
 	}
 
 }
