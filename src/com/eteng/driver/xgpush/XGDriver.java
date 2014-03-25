@@ -9,6 +9,11 @@ import com.tencent.xinge.XingeApp;
 public class XGDriver implements IPushDriver {
 	
 	XingeApp app;
+	
+	@Override
+	public void initialize(String appId, String privateKey) {
+		app = new XingeApp(Long.parseLong(appId), privateKey);
+	}
 
 	@Override
 	public void pushAll(Object message) {
