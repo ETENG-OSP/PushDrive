@@ -1,7 +1,7 @@
 package com.eteng.driver.xgpush;
 
+import com.eteng.mobile.IMessage;
 import com.eteng.mobile.IPushDriver;
-import com.eteng.mobile.MessageBuilder;
 import com.tencent.xinge.Message;
 import com.tencent.xinge.XingeApp;
 
@@ -16,13 +16,14 @@ public class XGDriver implements IPushDriver {
 	}
 
 	@Override
-	public void pushAll(Object message) {
-		app.pushAllDevice(XingeApp.DEVICE_ALL, (Message) message);
+	public void pushAll(IMessage message) {
+		Message raw = (Message) message.getRaw();
+		app.pushAllDevice(XingeApp.DEVICE_ALL, raw);
 	}
 
 	@Override
-	public MessageBuilder createBuilder() {
-		return new XGMessageBuilder();
+	public IMessage createMessage() {
+		return new XGMessage();
 	}
 
 }

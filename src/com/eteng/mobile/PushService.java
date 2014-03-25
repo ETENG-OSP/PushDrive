@@ -27,13 +27,8 @@ public class PushService {
 		}
 	}
 	
-	void pushAll(Message message) {
-		MessageBuilder builder = driver.createBuilder();
-		
-		builder.setTitle(message.getTitle())
-			.setText(message.getText());
-		
-		driver.pushAll(builder.build());
+	void pushAll(IMessage message) {		
+		driver.pushAll(message);
 	}
 	
 	void pushAccount() {
@@ -45,12 +40,17 @@ public class PushService {
 	public static void main(String args[]) {
 		
 		PushService service = new PushService();
-		Message message = new Message();
-		message.setTitle("hello");
-		message.setText("world");
+		MessageBuilder builder = service.createBuilder()
+		    .setTitle("Hello")
+			.setText("World");
 		
-		service.pushAll(message);
-		
+		service.pushAll(builder.build());
+	}
+
+	private MessageBuilder createBuilder() {
+		IMessage message = driver.createMessage();
+		MessageBuilder builder = new MessageBuilder(message);
+		return builder;
 	}
 
 }

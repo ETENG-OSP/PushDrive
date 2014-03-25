@@ -1,26 +1,27 @@
 package com.eteng.mobile;
 
-public abstract class MessageBuilder {
+public class MessageBuilder {
 	
+	IMessage message;
 	String title;
 	String text;
-
-	public String getTitle() {
-		return title;
-	}
-
-	public String getText() {
-		return text;
+	
+	MessageBuilder(IMessage message) {
+		this.message = message;
 	}
 	
 	public MessageBuilder setTitle(String title) {
+		message.setTitle(title);
 		return this;
 	}
 	
 	public MessageBuilder setText(String text) {
+		message.setText(text);
 		return this;
 	}
 	
-	public abstract Object build();
+	public IMessage build() {
+		return message;
+	}
 
 }
