@@ -7,7 +7,7 @@ public class Push {
 	
 	private PushDriver driver;
 	
-	Push() {
+	private Push() {
 		try {
 			String appId = Config.getAppId();
 			String privateKey = Config.getPrivateKey();
@@ -37,8 +37,8 @@ public class Push {
 		return this;
 	}
 	
-	public static void main(String[] args) throws PushException {
-		new Push().toAll();
+	public static Push create() {
+		return new Push();
 	}
 
 	public void toAll() throws PushException {
@@ -51,6 +51,12 @@ public class Push {
 
 	public void toGroup(String group) throws PushException {
 		this.driver.pushGroup(group);
+	}
+	
+	public static void main(String[] args) throws PushException {
+		Push.create()
+			.expire(0)
+			.toAll();
 	}
 
 }

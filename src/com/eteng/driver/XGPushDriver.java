@@ -2,6 +2,8 @@ package com.eteng.driver;
 
 import java.util.Map;
 
+import org.json.JSONObject;
+
 import com.eteng.exception.PushException;
 import com.eteng.mobile.PushDriver;
 import com.tencent.xinge.ClickAction;
@@ -13,6 +15,10 @@ public class XGPushDriver extends PushDriver {
 	
 	XingeApp app;
 	Message message;
+	
+	private static final int DEVICE_TYPE = XingeApp.DEVICE_ALL;
+	private static final String RET_CODE = "ret_code";
+	private static final int SUCCESS = 0;
 
 	@Override
 	public void setType(Type type) {
@@ -55,15 +61,25 @@ public class XGPushDriver extends PushDriver {
 
 	@Override
 	public void pushAll() throws PushException {
-		app.pushAllDevice(XingeApp.DEVICE_ALL, message);
+		JSONObject result = app.pushAllDevice(DEVICE_TYPE, message);
+		Integer retCode = result.getInt(RET_CODE);
+		if (retCode != SUCCESS) {
+			throw new PushException(result.toString());
+		}
 	}
 
 	@Override
 	public void pushAccount(String account) throws PushException {
+		JSONObject result = app.pushSingleAccount(DEVICE_TYPE, account, message);
+		Integer retCode = result.getInt(RET_CODE);
+		if (retCode != SUCCESS) {
+			throw new PushException(result.toString());
+		}
 	}
 
 	@Override
 	public void pushGroup(String group) throws PushException {
+		throw new PushException("not implement");
 	}
 
 }
