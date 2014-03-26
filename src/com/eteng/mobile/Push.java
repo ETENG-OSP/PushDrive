@@ -22,17 +22,17 @@ public class Push {
 		}
 	}
 	
-	Push title(String title) {
+	public Push title(String title) {
 		driver.setTitle(title);
 		return this;
 	}
 	
-	Push text(String text) {
+	public Push text(String text) {
 		driver.setText(text);
 		return this;
 	}
 	
-	Push expire(int ttl) {
+	public Push expire(int ttl) {
 		driver.setExpire(ttl);
 		return this;
 	}
