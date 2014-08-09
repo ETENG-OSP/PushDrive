@@ -28,6 +28,9 @@ PushDrive
 ### Push.toAccount("账户名")
 向目标用户推送信息
 
+### Push.expire(200)
+设置推送失效时间,毫秒数.
+
 ### 例子
 ```
 Push.create().text("你好").title("世界").toAccount("admin");
